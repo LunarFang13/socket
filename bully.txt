@@ -1,0 +1,53 @@
+import java.util.Random;
+
+class process {
+    int id, priority; // using same no for id n priority
+    boolean status;
+
+    public process(int id, int priority, boolean status) {
+        this.id = id;
+        this.priority = priority;
+        this.status = status;
+    }
+
+}
+
+public class BullyAlgo {
+    int max = 10;
+
+    public void bullyAlgo() {
+        process[] queue = new process[10];
+        Random rand = new Random();
+        for (int i = 0; i < max; i++) {
+            int ra = rand.nextInt(4) + 1;
+            queue[i] = new process(i + 1, i + 1, ra < 3); // for randomising which process fails
+        }
+        process coor = queue[9]; // current coordinator is 10th process
+        if (coor.status) { // if coord running,dont do anything
+            System.out.println("Coordinator is running, no need to elect\n");
+        } else {
+            queue[2].status = true; // assuming process 3 finds out that coord has died
+            int maxVal = -1; // to find out the highest priority process that is running
+            for (int i = 2; i < max; i++) {
+                if (!queue[i].status)
+                    continue; // to make sure the message is sent to only alive processes
+
+                System.out.print("\n\nProcess " + queue[i].id + " sends election messages to processes - ");
+
+                for (int j = i + 1; j < queue.length; j++) {
+                    if (queue[j].status) { // to check which all higher proccesses alive so it can send message to them
+                        System.out.print((j + 1) + " ");
+                        maxVal = j + 1; // has the highest value thats alive
+                    }
+                }
+
+            }
+            System.out.println("\nNew Leader is Process " + (maxVal));
+        }
+    }
+
+    public static void main(String[] args) {
+        BullyAlgo a = new BullyAlgo();
+        a.bullyAlgo();
+    }
+}
