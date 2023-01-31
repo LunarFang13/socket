@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.*;
 
 class process {
     int id, priority; // using same no for id n priority
@@ -15,15 +15,20 @@ class process {
 public class ltring {
     int max = 10;
 
-    public void ltring() {
+    public void ring() {
         process[] queue = new process[10];
         Random rand = new Random();
+        Scanner sc = new Scanner(System.in); // custom
         for (int i = 0; i < queue.length; i++) {
-            int ra = rand.nextInt(3) + 1;
-            queue[i] = new process(i + 1, i + 1, ra < 2);
+            // usual // int ra = rand.nextInt(3) + 1;
+            int pri = sc.nextInt(); // custom
+            int stat = sc.nextInt(); // custom
+            queue[i] = new process(i + 1, pri, stat == 1); // for custom value
+            // usual // queue[i] = new process(i + 1, i + 1, ra < 2);
         }
-        queue[9].status = false;
-        process coor = queue[4];
+        // usual // queue[9].status = false;
+        // usual// process coor = queue[4];
+        process coor = queue[queue.length - 1];
         if (coor.status) {
             System.out.println("Coordinator is running, no need to elect\n");
         } else {
@@ -61,6 +66,6 @@ public class ltring {
 
     public static void main(String[] args) {
         ltring a = new ltring();
-        a.ltring();
+        a.ring();
     }
 }
