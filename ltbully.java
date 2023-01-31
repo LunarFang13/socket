@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.*;
 
 class process {
     int id, priority; // using same no for id n priority
@@ -17,12 +17,18 @@ public class ltbully {
 
     public void ltbully() {
         process[] queue = new process[10];
-        Random rand = new Random();
+        Scanner sc = new Scanner(System.in); // custom
+        // Random rand = new Random();
         for (int i = 0; i < max; i++) {
-            int ra = rand.nextInt(4) + 1;
-            queue[i] = new process(i + 1, i + 1, ra < 3); // for randomising which process fails
+            int pri = sc.nextInt(); // custom
+            int stat = sc.nextInt(); // custom
+            queue[i] = new process(i + 1, pri, stat == 1);
+            // usual//int ra = rand.nextInt(4) + 1;
+            // usual //queue[i] = new process(i + 1, i + 1, ra < 3); // for randomising
+            // which process fails
         }
-        process coor = queue[9]; // current coordinator is 10th process
+        process coor = queue[queue.length - 1]; // custom
+        // usual// process coor = queue[9]; // current coordinator is 10th process
         if (coor.status) { // if coord running,dont do anything
             System.out.println("Coordinator is running, no need to elect\n");
         } else {
