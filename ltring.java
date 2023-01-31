@@ -1,0 +1,66 @@
+import java.util.Random;
+
+class process {
+    int id, priority; // using same no for id n priority
+    boolean status;
+
+    public process(int id, int priority, boolean status) {
+        this.id = id;
+        this.priority = priority;
+        this.status = status;
+    }
+
+}
+
+public class ltring {
+    int max = 10;
+
+    public void ltring() {
+        process[] queue = new process[10];
+        Random rand = new Random();
+        for (int i = 0; i < queue.length; i++) {
+            int ra = rand.nextInt(3) + 1;
+            queue[i] = new process(i + 1, i + 1, ra < 2);
+        }
+        queue[9].status = false;
+        process coor = queue[4];
+        if (coor.status) {
+            System.out.println("Coordinator is running, no need to elect\n");
+        } else {
+            queue[1].status = true;
+
+            int maxVal = -1; // till here same as bully
+
+            String s = "2 "; // to store the list that each process sends to next process
+
+            int j = 0;
+            for (int i = 1; i < queue.length - 1; i++) {
+                if (!queue[i].status)
+                    continue; // to go through other alive procceses
+
+                for (j = i + 1; j < (queue.length - 1); j++) {
+                    if (queue[j].status)
+                        break; // to find the next alive process to the right
+                }
+
+                if (j != 9) {
+                    System.out.println("Process " + queue[i].id + " sends message to " + queue[j].id);
+                    if (maxVal < j + 1)
+                        maxVal = j + 1; // to store max value who will become leader
+                    s += Integer.toString(j + 1) + " "; // to add its own id to msg before passing it on
+                    System.out.println("Current list is " + s);
+                }
+
+            }
+            if (maxVal != -1) {
+                System.out.println("Coordinator is " + maxVal);
+            }
+
+        }
+    }
+
+    public static void main(String[] args) {
+        ltring a = new ltring();
+        a.ltring();
+    }
+}
