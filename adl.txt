@@ -1,0 +1,699 @@
+ADL Test 2 Questions 
+1. Design HTML form for student registration and validate it using Java script. 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Student Registration Form</title>
+  </head>
+  <body>
+    <h1>Student Registration Form</h1>
+    <form name="registrationForm" onsubmit="return validateForm()" method="post">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName"><br><br>
+      
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName"><br><br>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email"><br><br>
+      
+      <label for="phone">Phone:</label>
+      <input type="text" id="phone" name="phone"><br><br>
+      
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob"><br><br>
+      
+      <label for="gender">Gender:</label>
+      <input type="radio" id="male" name="gender" value="male">
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="female">
+      <label for="female">Female</label><br><br>
+      
+      <input type="submit" value="Submit">
+    </form>
+    <script>
+      function validateForm() {
+        var firstName = document.forms["registrationForm"]["firstName"].value;
+        var lastName = document.forms["registrationForm"]["lastName"].value;
+        var email = document.forms["registrationForm"]["email"].value;
+        var phone = document.forms["registrationForm"]["phone"].value;
+        var dob = document.forms["registrationForm"]["dob"].value;
+        var gender = document.forms["registrationForm"]["gender"].value;
+        
+        if (firstName == "") {
+          alert("First name must be filled out");
+          return false;
+        }
+        
+        if (lastName == "") {
+          alert("Last name must be filled out");
+          return false;
+        }
+        
+        if (email == "") {
+          alert("Email must be filled out");
+          return false;
+        }
+        
+        if (phone == "") {
+          alert("Phone number must be filled out");
+          return false;
+        }
+        
+        if (dob == "") {
+          alert("Date of birth must be filled out");
+          return false;
+        }
+        
+        if (gender == "") {
+          alert("Please select your gender");
+          return false;
+        }
+        
+        return true;
+      }
+    </script>
+  </body>
+</html>
+
+This form includes fields for the student's first and last name, email, phone number, date of birth, and gender. The onsubmit attribute of the form element is set to call the validateForm() function, which checks that all required fields are filled out before allowing the form to be submitted. If any required field is missing, an alert is displayed and the form is not submitted.
+
+2. Write a JavaScript function that generates all combinations of a string. Example string: 'dog' 
+Expected Output: d,o,do,g,dg,og,dog 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Generate Combinations</title>
+    <script>
+     function generateCombinations(str) {
+    let result = [];
+
+    // Iterate over all possible combinations of length 1 to length of string
+    for (let i = 0; i < str.length; i++) {
+        for (let j = i + 1; j <= str.length; j++) {
+            // Add the substring to the result array
+            result.push(str.slice(i, j));
+        }
+    }
+
+    // Join the array elements into a string separated by commas
+    alert(result.join(","));
+}
+      
+    </script>
+  </head>
+  <body>
+    <h1>Generate Combinations</h1>
+    <br />
+    <textarea id="inputText" rows="1" cols="5"></textarea>
+    <button onclick="generateCombinations(document.getElementById('inputText').value)">Get Combinations</button>
+  </body>
+</html>
+
+This function first initializes an empty array to store the generated combinations. It then iterates over all possible combinations of length 1 to length of the string using nested loops. For each combination, it adds the substring to the result array. Finally, it joins the array elements into a string separated by commas and returns it.
+You can test the function by calling it with the string "dog" as an argument and printing the result to the console. The output should be "d,o,do,g,dg,og,dog".
+
+
+
+
+3. Write a JavaScript function that returns a passed string with letters in  alphabetical order. 
+Example string : 'webmaster' 
+Expected Output : 'abeemrstw' 
+Assume punctuation and numbers symbols are not included in the passed string. 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sort String</title>
+    <script>
+     function sortString(str) {
+    // Convert the string to an array of characters
+    let arr = str.split("");
+
+    // Sort the array in alphabetical order
+    arr.sort();
+
+    // Join the array elements into a string
+    let sortedStr = arr.join("");
+
+    // Return the sorted string
+    alert(sortedStr);
+}
+      
+    </script>
+  </head>
+  <body>
+    <h1>Sort String</h1>
+    <br />
+    <textarea id="inputText" rows="1" cols="5"></textarea>
+    <button onclick="sortString(document.getElementById('inputText').value)">Sort String</button>
+  </body>
+</html>
+
+
+
+This function first converts the input string to an array of characters using the split() method. It then sorts the array in alphabetical order using the sort() method. Finally, it joins the sorted array elements into a string using the join() method and returns it.
+You can test the function by calling it with the string "webmaster" as an argument and printing the result to the console. The output should be "abeemrstw".
+4. Write an HTML page that has one input, which can take multi-line text and a  submit button. Once the user clicks the submit button, it should show the number  of characters, lines and words in the text entered using an alert message. Words  are separated with white space and lines are separated with new line characters. 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Text Statistics</title>
+    <script>
+      function countText() {
+        // Get the input element and its value
+        let input = document.getElementById("inputText");
+        let text = input.value;
+
+        // Count the number of characters
+        let charCount = text.length;
+
+        // Count the number of lines
+        let lineCount = (text.match(/\n/g) || []).length + 1;
+
+        // Count the number of words
+        let wordCount = text.trim().split(/\s+/).length;
+
+        // Show an alert message with the text statistics
+        alert(
+          "Number of Characters: " +
+            charCount +
+            "\nNumber of Lines: " +
+            lineCount +
+            "\nNumber of Words: " +
+            wordCount
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Text Statistics</h1>
+    <textarea id="inputText" rows="10" cols="50"></textarea>
+    <br />
+    <button onclick="countText()">Submit</button>
+  </body>
+</html>
+
+This HTML page uses a JavaScript function called countText() that is called when the
+user clicks the submit button. The function first gets the input element and its value
+using the getElementById() method. It then counts the number of characters, lines,
+and words in the text using regular expressions and string methods. Finally, it shows
+an alert message with the text statistics using the alert() method.
+You can test the HTML page by opening it in a web browser, entering some multi-line text into the input field, and clicking the submit button. The alert message should display the number of characters, lines, and words in the entered text.
+5. Write a JavaScript function which accepts an argument and returns the type. Note : There are six possible values that typeof returns: object, boolean, function,  number, string, and undefined. 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Get Type of Input</title>
+  <script>
+    function getType(value) {
+      return typeof value;
+    }
+    
+    function handleSubmit() {
+      let str = "hmm";
+      let bool = true;
+      let num = 32;
+      let a;
+      const person = {firstName:"John", lastName:"Doe"};
+      const type = getType(a);
+      document.getElementById('output').innerHTML = `Type: ${type}`;
+    }
+  </script>
+</head>
+<body>
+  <h1>Get Type of Input</h1>
+  <div id="output"></div>
+  <button onclick="handleSubmit()">Submit</button>
+</body>
+</html>
+
+
+
+
+This function uses the built-in typeof operator to determine the type of the input value. The typeof operator returns a string indicating the type of the operand. The possible values are "object", "boolean", "function", "number", "string", and "undefined".
+The getType() function simply returns the type of the input value using the typeof operator.
+You can test the function by calling it with different types of values as arguments and printing the result to the console. The output should be the string representing the type of the input value.
+6. Using HTML, CSS create a page that displays a text on top of an image using an  overlay. 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Text on Image with Overlay</title>
+    <style>
+      /* Center the text */
+      .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      /* Create the overlay */
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      /* Set the image as background */
+      body {
+        background-image: url('path/to/image.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <div class="text">
+      <h1>Hello, World!</h1>
+      <p>This is an example text on top of an image using an overlay.</p>
+    </div>
+  </body>
+</html>
+
+In this example, we set the image as the background of the body element using CSS.
+We also created an overlay using a separate div element with a black
+semi-transparent background color. We positioned this overlay div element to cover
+the entire page using absolute positioning.
+To display the text on top of the image, we added another div element with the text content inside it. We centered the text vertically and horizontally using absolute positioning and the transform property.
+You can replace the background image URL and the text content with your own image and text to customize this example.
+7. Using HTML, CSS create a page applying a perspective transform with a hover  animation to an element. 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Perspective Transform with Hover Animation</title>
+    <style>
+      .card {
+        width: 300px;
+        height: 200px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        transform-style: preserve-3d;
+        transition: transform 0.5s;
+      }
+
+      .card:hover {
+        transform: perspective(800px) rotateY(10deg);
+      }
+
+      .card-front,
+      .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+      }
+
+      .card-front {
+        background-color: #3498db;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+      }
+
+      .card-back {
+        transform: rotateY(180deg);
+        background-color: #f1c40f;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-front">Front</div>
+      <div class="card-back">Back</div>
+    </div>
+  </body>
+</html>
+
+In this example, we created a card element with two child elements: a front element and a back element. We applied a perspective transform to the card element with a hover animation using CSS. When the user hovers over the card element, it rotates along the Y-axis and the back element becomes visible.
+We also used the backface-visibility property to hide the back face of the front and back elements when they are not visible.
+You can customize this example by changing the content of the front and back elements and adjusting the values of the CSS properties to achieve different visual effects.
+8. Using HTML, CSS, JavaScript create a page that displays a typewriter effect  animation. 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Typewriter Effect Animation</title>
+    <style>
+      #text {
+        font-family: monospace;
+        font-size: 2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid #333;
+        padding-right: 10px;
+        animation: typing 1s steps(30) forwards;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="text">Hello, World!</div>
+
+    <script>
+      const text = document.querySelector("#text");
+      const message = "Hello, World!";
+      let i = 0;
+
+      function typeWriter() {
+        if (i < message.length) {
+          text.innerHTML += message.charAt(i);
+          i++;
+          setTimeout(typeWriter, 50);
+        }
+      }
+
+      typeWriter();
+    </script>
+  </body>
+</html>
+
+In this example, we created a div element with an id of "text" that displays the text to animate. We used CSS to hide the overflow of the text and create a border that simulates a cursor blinking. We also created a keyframe animation that gradually increases the width of the text element to create the typing effect.
+In JavaScript, we selected the text element using document.querySelector() and initialized a message variable with the text to animate. We created a typeWriter() function that adds each character of the message to the text element one by one using the innerHTML property and a setTimeout() function with a delay of 50 milliseconds. We called the typeWriter() function to start the animation.
+You can customize this example by changing the content of the message variable, adjusting the values of the CSS properties to achieve different visual effects, and modifying the JavaScript code to suit your specific requirements.
+9. Using HTML, CSS create a page that animates with underline effect when the  user hovers over the text. 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Underline Effect Animation</title>
+    <style>
+      .underline {
+        position: relative;
+        display: inline-block;
+        font-size: 2rem;
+        text-decoration: none;
+        color: #333;
+      }
+
+      .underline::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0;
+        height: 3px;
+        background-color: #333;
+        transition: width 0.3s ease-in-out;
+      }
+
+      .underline:hover::after {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#" class="underline">Hover Me</a>
+  </body>
+</html>
+
+In this example, we created an anchor element with a class of "underline" and added some basic styles to position it and set the font size and color. We used CSS to add a pseudo-element ::after to the text and position it below the text using position: absolute and bottom: -3px. We set the initial width of the pseudo-element to 0 and added a transition to the width property to create the animation effect. We also added a hover effect to the .underline class that increases the width of the pseudo-element to 100% on hover.
+You can customize this example by changing the text content, adjusting the font size and color, and modifying the CSS properties to achieve different visual effects.
+
+10.Write a JavaScript conditional statement to find the sign of product of three  numbers. Display an alert box with the specified sign.  
+Sample numbers : 3, -7, 2  
+Output : The sign is – 
+<!DOCTYPE html>
+<html>
+  <script>
+    function asd() {
+      let num1 = prompt("Enter num");
+let num2 = prompt("Enter num");
+let num3 = prompt("Enter num");
+let product = num1 * num2 * num3;
+
+if (product > 0) {
+  alert("The sign is +");
+} else if (product < 0) {
+  alert("The sign is -");
+} else {
+  alert("The product is zero.");
+}
+    }
+  </script>
+  <body>
+    <button onclick="asd()">Click</button>
+  </body>
+</html>
+
+
+
+
+
+In this example, we declared three variables num1, num2, and num3 with sample numbers and calculated the product by multiplying them. We used conditional statements (if, else if, and else) to check if the product is positive, negative, or zero. Depending on the sign of the product, we displayed an alert box with the specified sign using the alert() method.
+
+When we run this code with the sample numbers, the output will be: "The sign is -", since the product of 3, -7, and 2 is negative.
+
+
+11.Write a JavaScript function to get the last day of a month. 
+Test Data : 
+document.write(lastday(2014,0)); 
+document.write(lastday(2014,1));
+document.write(lastday(2014,11)); 
+Output : 
+31 
+28 
+31 
+<!DOCTYPE html>
+<html>
+  <script>
+    function lastDay() {
+      let year = prompt("Enter Year");
+      let month = prompt("Enter month");
+      
+  let date = new Date(year, month, 0);
+  alert(date.getDate());
+}
+  </script>
+  <body>
+    lastDay()
+    <button onclick="lastDay()">Click</button>
+  </body>
+</html>
+
+
+
+In this example, we created a function lastDay that takes two arguments year and month. We used the Date() constructor to create a new Date object, passing in the year and month arguments with day set to 0. This sets the date to the last day of the previous month, effectively giving us the last day of the specified month. We then used the getDate() method to return the last day of the month.
+
+To test this function, we can call it with different year and month values using the document.write() method, like in the example provided:
+document.write(lastDay(2014, 0)); // Output: 31
+document.write(lastDay(2014, 1)); // Output: 28
+document.write(lastDay(2014, 11)); // Output: 31
+
+In this example, we called the lastDay() function with three different month values (0 for January, 1 for February, and 11 for December) and the same year value (2014). The function returned the last day of each month, which we displayed using the document.write() method.
+12.Create a simple calculator application using servlet. 
+package servlet;
+
+import java.io.IOException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+
+public class CalculatorServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+       
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Display the calculator form
+        response.setContentType("text/html");
+        response.getWriter().println("<html><body>"
+                + "<form method=\"post\">"
+                + "<label for=\"num1\">First number:</label>"
+                + "<input type=\"text\" name=\"num1\"><br>"
+                + "<label for=\"num2\">Second number:</label>"
+                + "<input type=\"text\" name=\"num2\"><br>"
+                + "<input type=\"radio\" name=\"op\" value=\"add\">Addition<br>"
+                + "<input type=\"radio\" name=\"op\" value=\"sub\">Subtraction<br>"
+                + "<input type=\"radio\" name=\"op\" value=\"mul\">Multiplication<br>"
+                + "<input type=\"radio\" name=\"op\" value=\"div\">Division<br>"
+                + "<input type=\"submit\" value=\"Calculate\">"
+                + "</form>"
+                + "</body></html>");
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Perform the calculation
+        int num1 = Integer.parseInt(request.getParameter("num1"));
+        int num2 = Integer.parseInt(request.getParameter("num2"));
+        String op = request.getParameter("op");
+        int result = 0;
+        String message = "";
+        switch(op) {
+            case "add":
+                result = num1 + num2;
+                message = num1 + " + " + num2 + " = " + result;
+                break;
+            case "sub":
+                result = num1 - num2;
+                message = num1 + " - " + num2 + " = " + result;
+                break;
+            case "mul":
+                result = num1 * num2;
+                message = num1 + " * " + num2 + " = " + result;
+                break;
+            case "div":
+                result = num1 / num2;
+                message = num1 + " / " + num2 + " = " + result;
+                break;
+            default:
+                message = "Invalid operation";
+                break;
+        }
+        // Display the result
+        response.setContentType("text/html");
+        response.getWriter().println("<html><body>"
+                + "<p>" + message + "</p>"
+                + "<a href=\"CalculatorServlet\">Back to calculator</a>"
+                + "</body></html>");
+    }
+}
+
+Create a new dynamic web project in Eclipse or any other IDE of your choice.
+Add the servlet API library to the project.
+Create a new servlet called CalculatorServlet that extends HttpServlet.
+Override the doGet() method to handle GET requests and display the calculator form.
+Override the doPost() method to handle POST requests and perform the calculation.
+In the doGet() method, display a simple HTML form that asks the user to enter two numbers and select an operation.
+In the doPost() method, retrieve the values of the two numbers and the selected operation from the request parameters.
+Perform the calculation based on the selected operation and display the result in the response.
+13.Create a servlet for a login page. If the username and password are correct then  it says message “Hello ” else a message “login failed”. 
+package servlet;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class LoginServlet extends HttpServlet {
+    
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1065010156746987188L;
+    private static final String USERNAME = "user123";
+    private static final String PASSWORD = "pass123";
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+        out.println("<h2>Login</h2>");
+        out.println("<form method='post' action='" + request.getContextPath() + "/LoginServlet'>");
+        out.println("<label for='username'>Username:</label>");
+        out.println("<input type='text' id='username' name='username'><br>");
+        out.println("<label for='password'>Password:</label>");
+        out.println("<input type='password' id='password' name='password'><br>");
+        out.println("<input type='submit' value='Submit'>");
+        out.println("</form>");
+        out.println("</body></html>");
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        if (USERNAME.equals(username) && PASSWORD.equals(password)) {
+            response.setContentType("text/html");
+            PrintWriter out = response.getWriter();
+            out.println("<html><body>");
+            out.println("<h2>Hello " + username + "!</h2>");
+            out.println("</body></html>");
+        } else {
+            response.setContentType("text/html");
+            PrintWriter out = response.getWriter();
+            out.println("<html><body>");
+            out.println("<h2>Login failed!</h2>");
+            out.println("</body></html>");
+        }
+    }
+}
+
+
+
+
+
+
+14.Create a servlet that uses Cookies to store the number of times a user has  visited servlet.
+package servlet;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.*;
+
+public class VisitCounterServlet extends HttpServlet {
+   /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8496070244774973740L;
+
+public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      // Get the current number of visits from the cookie
+      int visitCount = 0;
+      Cookie[] cookies = request.getCookies();
+      if (cookies != null) {
+         for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("visitCount")) {
+               visitCount = Integer.parseInt(cookie.getValue());
+               break;
+            }
+         }
+      }
+
+      // Increment the visit count and store it in the cookie
+      visitCount++;
+      Cookie visitCountCookie = new Cookie("visitCount", Integer.toString(visitCount));
+      visitCountCookie.setMaxAge(60*60*24*365); // 1 year
+      response.addCookie(visitCountCookie);
+
+      // Display the number of visits in the response
+      response.setContentType("text/html");
+      PrintWriter out = response.getWriter();
+      out.println("<html><body>");
+      out.println("<h1>Visit Counter</h1>");
+      out.println("<p>You have visited this page " + visitCount + " times.</p>");
+      out.println("</body></html>");
+   }
+}
+
+This servlet first gets the current number of visits from the cookie (if it exists),
+increments it, and stores it back in the cookie with a max age of one year. Then it
+displays the number of visits in the response.
+To use this servlet, you need to deploy it in a servlet container such as Tomcat, and
+then access it through a web browser. Each time you access the servlet, the visit
+count will be incremented and stored in the cookie.
+
+
+
+
+
