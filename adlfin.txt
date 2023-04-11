@@ -1,0 +1,1592 @@
+2)Write JavaScript to validate the following fields of the Registration page First Name (Name should contains alphabets and the length should not be less than 6 characters).  Password (Password should not be less than 6 characters length).  E-mail id (should not contain any invalid and must follow the standard pattern name@domain.com)  Mobile Number (Phone number should contain 10 digits only).  Last Name and Address (should not be Empty)
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration Form</title>
+    <script>
+      function validateForm() {
+        // Get form values
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var mobileNumber = document.getElementById("mobileNumber").value;
+        var address = document.getElementById("address").value;
+        
+        // Validate first name
+        var nameRegex = /^[a-zA-Z]{6,}$/;
+        if (!nameRegex.test(firstName)) {
+          alert("First name should contain alphabets only and should not be less than 6 characters.");
+          return false;
+        }
+        
+        // Validate last name
+        if (lastName.trim() === "") {
+          alert("Last name should not be empty.");
+          return false;
+        }
+        
+        // Validate email
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert("Invalid email address.");
+          return false;
+        }
+        
+        // Validate password
+        if (password.length < 6) {
+          alert("Password should not be less than 6 characters.");
+          return false;
+        }
+        
+        // Validate mobile number
+        var mobileRegex = /^\d{10}$/;
+        if (!mobileRegex.test(mobileNumber)) {
+          alert("Mobile number should contain 10 digits only.");
+          return false;
+        }
+        
+        // Validate address
+        if (address.trim() === "") {
+          alert("Address should not be empty.");
+          return false;
+        }
+        
+        // All validations passed
+        return true;
+      }
+    </script>
+  </head>
+  <body>
+    <form onsubmit="return validateForm();">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" required><br><br>
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" required><br><br>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required><br><br>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br><br>
+
+      <label for="mobileNumber">Mobile Number:</label>
+      <input type="tel" id="mobileNumber" name="mobileNumber" required><br><br>
+
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" required></textarea><br><br>
+
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
+
+
+3) Develop and demonstrate JavaScript with POP-UP boxes and functions for the following problems: Input: Click on Display Date button using onclick( ) function 
+
+Output: Display date in the textbox 
+Input: A number n obtained using prompt 
+Output: Factorial of n number using alert 
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pop-up Boxes and Functions Demo</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script>
+		function displayDate() {
+			let currentDate = new Date();
+			let dateString = currentDate.toDateString();
+			document.getElementById("dateTextbox").value = dateString;
+		}
+		
+		function calculateFactorial() {
+			let num = prompt("Please enter a number:");
+			if (num === null || isNaN(num)) {
+				alert("Invalid input. Please enter a number.");
+				return;
+			}
+			let result = 1;
+			for (let i = 2; i <= num; i++) {
+				result *= i;
+			}
+			alert("Factorial of " + num + " is: " + result);
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="Display Date" onclick="displayDate()">
+	<input type="text" id="dateTextbox" readonly>
+	<br><br>
+	<input type="button" value="Calculate Factorial" onclick="calculateFactorial()">
+</body>
+</html>
+
+
+4) Develop and demonstrate JavaScript with POP-UP boxes and functions for the following problems:
+
+Input: A number n obtained using prompt 
+Output: A multiplication table of numbers from 1 to 10 of n using alert 
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Multiplication Table</title>
+	<script>
+		function multiply(){
+			let n = prompt("Enter a number:");
+
+			// Create a string to store the multiplication table
+			let table = "";
+
+			// Loop through numbers 1 to 10 and multiply them with n
+			for(let i=1; i<=10; i++){
+				let result = n * i;
+				// Add the result to the table string
+				table += n + " x " + i + " = " + result + "\n";
+			}
+
+			// Display the multiplication table in an alert box
+			alert(table);
+		}
+	</script>
+</head>
+<body>
+	<h1>Multiplication Table</h1>
+	<button onclick="multiply()">Show Multiplication Table</button>
+</body>
+</html>
+
+Input: A number n obtained using prompt and add another number using confirm 
+Output: Sum of the entire n numbers using alert
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sum of Numbers</title>
+	<script>
+		function sumofn(){
+			let n = prompt("Enter a number:");
+			let confirmNumber = confirm("Would you like to add another number?");
+
+			let sum = Number(n); // Initialize the sum with n converted to a number
+
+			// If the user confirms adding another number
+			if(confirmNumber){
+				let otherNumber = prompt("Enter the other number:");
+				sum += Number(otherNumber); // Add the other number to the sum
+			}
+
+			// Display the sum using an alert box
+			alert("The sum of the numbers is " + sum);
+		}
+	</script>
+</head>
+<body>
+	<h1>Sum of Numbers</h1>
+	<button onclick="sumofn()">Find Sum</button>
+</body>
+</html>
+
+
+5)HTML page that contains a selection box with a list of 5 countries. When the user selects a country, its capital should be printed next in the list. Add CSS to customise the properties of the font of the capital (colour, bold and font size).
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Country Capitals</title>
+	<style>
+		#capital {
+			font-weight: bold;
+			font-size: 1.2em;
+			color: hsl(289, 63%, 53%);
+		}
+	</style>
+</head>
+<body>
+	<label for="countries">Select a country:</label>
+	<select id="countries" onchange="showCapital()">
+		<option value="">--Please select--</option>
+		<option value="france">France</option>
+		<option value="germany">Germany</option>
+		<option value="italy">Italy</option>
+		<option value="spain">Spain</option>
+		<option value="uk">United Kingdom</option>
+	</select>
+	<p id="capital"></p>
+
+	<script>
+		function showCapital() {
+			var select = document.getElementById("countries");
+			var capital = document.getElementById("capital");
+			var country = select.options[select.selectedIndex].value;
+			switch(country) {
+				case "france":
+					capital.innerHTML = "Paris";
+					break;
+				case "germany":
+					capital.innerHTML = "Berlin";
+					break;
+				case "italy":
+					capital.innerHTML = "Rome";
+					break;
+				case "spain":
+					capital.innerHTML = "Madrid";
+					break;
+				case "uk":
+					capital.innerHTML = "London";
+					break;
+				default:
+					capital.innerHTML = "";
+			}
+		}
+	</script>
+</body>
+</html>
+
+
+6)HTML page including any required JavaScript that takes a number from text field in the range of 0 to 999 and shows it in words. It should not accept four and above digits, alphabets and special characters
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Number to Word Converter</title>
+	<script type="text/javascript">
+		function convertToWord() {
+			// Get the number input element
+			var numberInput = document.getElementById("number-input");
+
+			// Get the value entered by the user
+			var number = parseInt(numberInput.value);
+
+			// Check if the input is valid
+			if (isNaN(number) || number < 0 || number > 999) {
+				alert("Please enter a valid number between 0 and 999.");
+				return;
+			}
+
+			// Define arrays for the word equivalents
+			var ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+			var tens = ["", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+			var teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+
+			// Determine the word equivalent of the number
+			var word = "";
+			if (number >= 100) {
+				word += ones[Math.floor(number / 100)] + " hundred ";
+				number %= 100;
+			}
+			if (number >= 20) {
+				word += tens[Math.floor(number / 10)] + " ";
+				number %= 10;
+			}
+			if (number >= 10 && number <= 19) {
+				word += teens[number - 10] + " ";
+				number = 0;
+			}
+			if (number >= 1 && number <= 9) {
+				word += ones[number] + " ";
+			}
+			if (word == "") {
+				word = "zero";
+			}
+
+			// Display the word equivalent on the page
+			var wordOutput = document.getElementById("word-output");
+			wordOutput.innerHTML = word;
+		}
+	</script>
+</head>
+<body>
+	<h1>Number to Word Converter</h1>
+	<p>Enter a number between 0 and 999:</p>
+	<input type="text" id="number-input" maxlength="3">
+	<button onclick="convertToWord()">Convert</button>
+	<p>The word equivalent of the number is:</p>
+	<p id="word-output"></p>
+</body>
+</html>
+
+
+7)JavaScript simple calculator to perform the following operations: sum, product, difference and quotient.
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+    <script>
+        function calculate() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            var operation = document.getElementById('operation').value;
+            var result;
+
+            switch (operation) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num1 / num2;
+                    break;
+                default:
+                    result = "Invalid operation";
+                    break;
+            }
+
+            document.getElementById('result').innerHTML = result;
+        }
+    </script>
+</head>
+<body>
+    <h1>Simple Calculator</h1>
+    <form>
+        <label for="num1">Number 1:</label>
+        <input type="text" id="num1" name="num1"><br>
+
+        <label for="num2">Number 2:</label>
+        <input type="text" id="num2" name="num2"><br>
+
+        <label for="operation">Operation:</label>
+        <select id="operation" name="operation">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select><br>
+
+        <button type="button" onclick="calculate()">Calculate</button>
+    </form>
+
+    <p id="result"></p>
+</body>
+</html>
+
+
+8)Design the static web pages for an onlineBook store. The website should contain the following pages.  Registration and user Login  User Profile Page  Books catalog
+
+Registration and Login Page:
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bookstore - Registration/Login</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Bookstore</h1>
+		<nav>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Books Catalog</a></li>
+				<li><a href="#">Register/Login</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<h2>Login to Your Account</h2>
+		<form>
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email" required>
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password" required>
+			<button type="submit">Login</button>
+		</form>
+		<p>New User? <a href="#">Register Here</a></p>
+	</main>
+	<footer>
+		<p>&copy; 2023 Bookstore. All rights reserved.</p>
+	</footer>
+</body>
+</html>
+
+
+User Profile Page:
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bookstore - User Profile</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Bookstore</h1>
+		<nav>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Books Catalog</a></li>
+				<li><a href="#">Logout</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<h2>Welcome, John Doe</h2>
+		<ul>
+			<li><strong>Name:</strong> John Doe</li>
+			<li><strong>Email:</strong> johndoe@gmail.com</li>
+			<li><strong>Address:</strong> 123 Main St, Anytown USA</li>
+			<li><strong>Phone:</strong> 555-555-5555</li>
+		</ul>
+	</main>
+	<footer>
+		<p>&copy; 2023 Bookstore. All rights reserved.</p>
+	</footer>
+</body>
+</html>
+
+
+Books Catalog Page:
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bookstore - Books Catalog</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Bookstore</h1>
+		<nav>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Books Catalog</a></li>
+				<li><a href="#">Logout</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<h2>Books Catalog</h2>
+		<ul>
+			<li>
+				<h3>The Great Gatsby</h3>
+				<p>by F. Scott Fitzgerald</p>
+				<p>$9.99</p>
+			</li>
+			<li>
+				<h3>1984</h3>
+				<p>by George Orwell</p>
+				<p>$8.99</p>
+
+
+
+9)Design HTML form for student registration and validate it using Java script.
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Registration Form</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="script.js"></script>
+</head>
+<body>
+	<header>
+		<h1>Student Registration Form</h1>
+	</header>
+	<main>
+		<form id="registration-form" onsubmit="return validateForm()">
+			<label for="name">Name:</label>
+			<input type="text" id="name" name="name" required>
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email" required>
+			<label for="phone">Phone:</label>
+			<input type="tel" id="phone" name="phone" required>
+			<label for="dob">Date of Birth:</label>
+			<input type="date" id="dob" name="dob" required>
+			<label for="gender">Gender:</label>
+			<select id="gender" name="gender" required>
+				<option value="">Select Gender</option>
+				<option value="male">Male</option>
+				<option value="female">Female</option>
+				<option value="other">Other</option>
+			</select>
+			<button type="submit">Register</button>
+		</form>
+	</main>
+	<footer>
+		<p>&copy; 2023 Student Registration. All rights reserved.</p>
+	</footer>
+	<script>
+		function validateForm() {
+		    var name = document.forms["registration-form"]["name"].value;
+		    var email = document.forms["registration-form"]["email"].value;
+		    var phone = document.forms["registration-form"]["phone"].value;
+		    var dob = document.forms["registration-form"]["dob"].value;
+		    var gender = document.forms["registration-form"]["gender"].value;
+	    if (name.length < 6) {
+	        alert("Name should contain at least 6 characters.");
+	        return false;
+	    }
+	  
+	    if (phone.length != 10) {
+	        alert("Phone number should contain 10 digits only.");
+	        return false;
+	    }
+	  
+	    var emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+	    if (!emailPattern.test(email)) {
+	        alert("Please enter a valid email address.");
+	        return false;
+	    }
+	  
+	    if (gender == "") {
+	        alert("Please select your gender.");
+	        return false;
+	    }
+	  
+	    return true;
+	}
+</script>
+</body>
+</html>
+
+
+10)HTML resume on a web page.
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Your Name - Resume</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			max-width: 800px;
+			margin: auto;
+			padding: 20px;
+			box-sizing: border-box;
+		}
+
+		h1, h2 {
+			margin-top: 0;
+			margin-bottom: 10px;
+			text-align: center;
+		}
+
+		h1 {
+			font-size: 36px;
+		}
+
+		h2 {
+			font-size: 24px;
+		}
+
+		p {
+			margin-top: 0;
+			margin-bottom: 10px;
+		}
+
+		ul {
+			margin-top: 0;
+			margin-bottom: 10px;
+			padding-left: 20px;
+		}
+
+		section {
+			margin-bottom: 20px;
+		}
+
+		section:last-of-type {
+			margin-bottom: 0;
+		}
+
+		@media (max-width: 480px) {
+			h1 {
+				font-size: 24px;
+			}
+
+			h2 {
+				font-size: 20px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<h1>John</h1>
+			<h2>Full stack web developer</h2>
+		</header>
+
+		<section>
+			<h2>Summary</h2>
+			<p>As a student, one of the primary career goals is to acquire knowledge and skills that will enable them to pursue their desired career path. Students may also aim to obtain relevant work experience through internships, part-time jobs, or volunteer work to gain practical skills and build their resume. Another common goal is to maintain a good academic record and network with professionals in their field of interest to increase their chances of securing a job after graduation. Ultimately, the specific career goals of a student will depend on their interests, passions, and aspirations.</p>
+		</section>
+
+		<section>
+			<h2>Education</h2>
+			<ul>
+				<li>BE , CS , PSG , 20.05.2024 </li>
+				<li>BE , CS , PSG , 20.04.2024 </li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Experience</h2>
+			<ul>
+				<li>Software developer engineer , TCS , 12.04.2026 </li>
+				<li>Cyber security , Triology , 07.08.2028 </li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Skills</h2>
+			<ul>
+				<li>Problem solving</li>
+				<li>Riding</li>
+				<li>Web developer</li>
+				<li>Playing chess</li>
+			</ul>
+		</section>
+	</div>
+</body>
+</html>
+
+
+11)HTML program for demonstrating Hyperlinks. Navigation from one page to another. Navigation within the page. 
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hyperlinks Example</title>
+</head>
+<body>
+	<h1>Hyperlinks Example</h1>
+	<p>Welcome to my website! Here are some links to other pages and sections:</p>
+	
+	<!-- Link to another page -->
+	<p><a href="https://www.google.com">Go to Google</a></p>
+	
+	<!-- Link to a section within the same page -->
+	<p><a href="#about">About Me</a></p>
+	
+	<!-- Link to another section within the same page -->
+	<p><a href="#contact">Contact Me</a></p>
+	
+	<h2 id="about">About Me</h2>
+	<p>Hi, my name is John Doe and I am a web developer. I love creating websites and learning new technologies.</p>
+	
+	<h2 id="contact">Contact Me</h2>
+	<p>You can contact me by email at <a href="mailto:john.doe@example.com">john.doe@example.com</a>.</p>
+	
+</body>
+</html>
+
+
+
+12)Write HTML for demonstration of cascading stylesheets.  Embedded style sheets.  External style sheets.  Inline styles. 
+
+Cascading Stylesheets:
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cascading Stylesheets Example</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <h1>My Website</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="main-content">
+      <h2>Welcome to my website</h2>
+      <p>This is an example of using cascading stylesheets to style a web page.</p>
+      <p>The styles are defined in an external style sheet called "style.css".</p>
+    </section>
+  </body>
+</html>
+
+Embedded Style Sheet:
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Embedded Style Sheet Example</title>
+    <style>
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+      }
+
+      nav li {
+        margin-right: 20px;
+      }
+
+      nav a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .main-content {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+      }
+
+      h2 {
+        font-size: 24px;
+        color: #333;
+      }
+
+      p {
+        font-size: 18px;
+        line-height: 1.5;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>My Website</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="main-content">
+      <h2>Welcome to my website</h2>
+      <p>This is an example of using an embedded style sheet to style a web page.</p>
+      <p>The styles are defined within the <code>&lt;style&gt;</code> tags in the head section of the HTML document.</p>
+    </section>
+  </body>
+</html>
+
+
+External Style Sheet:
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <h1>External Style Sheet Demo</h1>
+    <p>This is an example of using an external style sheet.</p>
+    <p>All the styles for this page are defined in the style.css file.</p>
+  </body>
+</html>
+
+Inline Styles:
+
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <h1 style="color: red; font-size: 36px;">Inline Styles Demo</h1>
+    <p style="color: blue;">This is an example of using inline styles.</p>
+    <p style="font-size: 20px;">All the styles for this page are defined directly on the elements.</p>
+  </body>
+</html>
+
+
+13)Write a JSP that reads a value, creates a cookie and retrieves it
+
+
+<%
+  // get the value from user input
+  String value = request.getParameter("value");
+  
+  // encode the value
+  String encodedValue = value;
+  
+  // create a new cookie with the encoded value
+  Cookie cookie = new Cookie("myCookie", encodedValue);
+  
+  // set the cookie's max age to 1 day (in seconds)
+  cookie.setMaxAge(86400);
+  
+  // add the cookie to the response
+  response.addCookie(cookie);
+  
+  // retrieve the cookie value (if it exists)
+  String cookieValue = null;
+  Cookie[] cookies = request.getCookies();
+  if (cookies != null) {
+    for (Cookie c : cookies) {
+      if (c.getName().equals("myCookie")) {
+        cookieValue = c.getValue();
+        // decode the value
+        break;
+      }
+    }
+  }
+%>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cookie Example</title>
+</head>
+<body>
+  <form method="post">
+    <label for="value">Enter a value:</label>
+    <input type="text" id="value" name="value">
+    <input type="submit" value="Submit">
+  </form>
+  
+  <%-- display the cookie value (if it exists) --%>
+  <% if (cookieValue != null) { %>
+    <p>The cookie value is: <%= cookieValue %></p>
+  <% } %>
+</body>
+</html>    
+
+//save this in the webapps folder in tomcat as .jsp and then open in browser using localhost:8080/foldername/filename.jsp
+
+
+
+14)A web application takes a name as input and on submit it shows a hello page where is taken from the request and it shows a start time at the right top corner of the page and provides the logout button on clicking this button it should shoe a logout page with thank you message with the duration of Usage
+
+index.html: 
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+</head>
+<body>
+	<form action="hello.jsp" method="post">
+		<label for="name">Name:</label>
+		<input type="text" name="name" id="name" required>
+		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>
+
+hello.jsp :
+
+<%@page import="java.util.Date"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello Page</title>
+</head>
+<body>
+	<h1>Hello, <%= request.getParameter("name") %>!</h1>
+	<p id="time" style="position: fixed; top: 0; right: 0;"></p>
+	<button onclick="logout()">Logout</button>
+
+	<script>
+		// Get the current time and display it at the right top corner of the page
+		function showTime() {
+			var date = new Date();
+			var time = date.toLocaleTimeString();
+			document.getElementById("time").innerHTML = time;
+		}
+		showTime();
+
+		// Logout and show the thank you page with duration of usage
+		function logout() {
+			var endTime = new Date();
+			var duration = Math.floor((endTime - startTime) / 1000); // in seconds
+			location.href = "logout.jsp?duration=" + duration;
+		}
+
+		// Set the start time
+		var startTime = new Date();
+	</script>
+</body>
+</html>
+
+logout.jsp :
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Logout Page</title>
+</head>
+<body>
+	<h1>Thank You for Using Our Site</h1>
+	<p>You have used our site for <%= request.getParameter("duration") %> seconds.</p>
+</body>
+</html>
+
+//open webapps folder in apache tomcat and create a new folder and save html file as .html and jsp file as .jsp Then run it by going to browser and doing localhost:8080/foldername/htmlfilename
+
+
+
+15)A web application that takes name and age from an HTML page. If the age is less than 18, it should send a page with “hello, and u are not authorized to visit this site” otherwise it should send “welcome to this site” message where name should be replaced with the entered name otherwise it should send welcome to the site message
+
+jsp:
+
+<%@ page language="java" %>
+<%@ page import="java.io.*, java.util.*" %>
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+    <%
+        String name = request.getParameter("name");
+        int age = Integer.parseInt(request.getParameter("age"));
+        if (age < 18) {
+    %>
+        <h1>Hello, <%=name%>. You are not authorized to visit this site.</h1>
+    <%
+        } else {
+    %>
+        <h1>Welcome to this site, <%=name%>!</h1>
+    <%
+        }
+    %>
+</body>
+</html>
+
+Html :
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Name and Age</title>
+</head>
+<body>
+    <form method="post" action="welcome.jsp">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+//open webapps folder in apache tomcat and create a new folder and save html file as .html and jsp file as .jsp Then run it by going to browser and doing localhost:8080/foldername/htmlfilename
+
+
+16)Create an android application that draws basic Graphical Primitives on the screen
+
+#MainActivity.java:
+
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.os.Bundle;
+import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Create a new custom view and set it as the content view
+        setContentView(new MyView(this));
+    }
+
+    // Custom view that draws graphical primitives on the screen
+    private static class MyView extends View {
+
+        // Paint object for drawing
+        private Paint paint;
+
+        public MyView(MainActivity context) {
+            super(context);
+
+            // Initialize the Paint object
+            paint = new Paint();
+            paint.setColor(Color.RED);
+            paint.setStyle(Paint.Style.FILL);
+            paint.setStrokeWidth(5);
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+
+            // Draw a circle
+            canvas.drawCircle(200, 200, 100, paint);
+
+            // Draw a rectangle
+            canvas.drawRect(350, 150, 550, 350, paint);
+
+            // Draw a line
+            canvas.drawLine(600, 200, 800, 400, paint);
+        }
+    }
+}
+
+Newer Version:
+
+#activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView" />
+</RelativeLayout>
+
+#MainActivity.java
+
+package com.example.myapplication;
+
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.widget.ImageView;
+
+public class MainActivity extends Activity
+{
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //Creating a Bitmap
+        Bitmap bg = Bitmap.createBitmap(720, 1280, Bitmap.Config.ARGB_8888);
+
+        //Setting the Bitmap as background for the ImageView
+        ImageView i = (ImageView) findViewById(R.id.imageView);
+        i.setBackground(new BitmapDrawable(getResources(), bg));
+
+        //Creating the Canvas Object
+        Canvas canvas = new Canvas(bg);
+
+        //Creating the Paint Object and set its color & TextSize
+        Paint paint = new Paint();
+        paint.setColor(Color.BLUE);
+        paint.setTextSize(50);
+
+        //To draw a Rectangle
+        canvas.drawText("Rectangle", 420, 150, paint);
+        canvas.drawRect(400, 200, 650, 700, paint);
+
+        //To draw a Circle
+        canvas.drawText("Circle", 120, 150, paint);
+        canvas.drawCircle(200, 350, 150, paint);
+
+        //To draw a Square
+        canvas.drawText("Square", 120, 800, paint);
+        canvas.drawRect(50, 850, 350, 1150, paint);
+
+        //To draw a Line
+        canvas.drawText("Line", 480, 800, paint);
+        canvas.drawLine(520, 850, 520, 1150, paint);
+    }
+}
+
+
+17)Create an android application that shows an alert upon receiving a message. 
+
+#MainActivity.java:
+
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final int REQUEST_READ_SMS = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Request permission to read SMS messages
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_SMS},
+                    REQUEST_READ_SMS);
+        }
+    }
+
+    // Handle permission request result
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == REQUEST_READ_SMS) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+}
+
+#SmsReceiver.java:
+
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.telephony.SmsMessage;
+
+public class SmsReceiver extends BroadcastReceiver {
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
+            // Get the SMS message
+            Bundle bundle = intent.getExtras();
+            if (bundle != null) {
+                Object[] pdus = (Object[]) bundle.get("pdus");
+                SmsMessage[] messages = new SmsMessage[pdus.length];
+                for (int i = 0; i < pdus.length; i++) {
+                    messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
+                }
+                String messageBody = messages[0].getMessageBody();
+
+                // Create an alert
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("New Message");
+                builder.setMessage(messageBody);
+                builder.setPositiveButton("OK", null);
+                builder.show();
+            }
+        }
+    }
+}
+
+
+
+Newer Version:
+
+#activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textSize="30sp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="click"
+        android:id="@+id/btn"
+        />
+</LinearLayout>
+
+
+#MainActivity.java
+
+package com.example.androidnotification;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.graphics.Color;
+import android.media.AudioAttributes;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText e;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button button=findViewById(R.id.btn);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View v) {
+                showNotification();
+            }
+        });
+
+
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void showNotification()
+    {
+        e= (EditText) findViewById(R.id.editText);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(MainActivity. this, "default_notification_channel_id" )
+                .setSmallIcon(R.drawable. ic_launcher_foreground )
+                .setContentTitle( "Test" )
+                .setContentText( e.getText().toString()) ;
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context. NOTIFICATION_SERVICE );
+        if (android.os.Build.VERSION. SDK_INT >= android.os.Build.VERSION_CODES. O ) {
+            int importance = NotificationManager. IMPORTANCE_HIGH ;
+            NotificationChannel notificationChannel = new NotificationChannel( "NOTIFICATION_CHANNEL_ID" , "NOTIFICATION_CHANNEL_NAME" , importance) ;
+            notificationChannel.enableLights( true ) ;
+            notificationChannel.setLightColor(Color. RED ) ;
+            notificationChannel.enableVibration( true ) ;
+            notificationChannel.setVibrationPattern( new long []{ 100 , 200 , 300 , 400 , 500 , 400 , 300 , 200 , 400 }) ;
+            mBuilder.setChannelId( "NOTIFICATION_CHANNEL_ID" ) ;
+            assert mNotificationManager != null;
+            mNotificationManager.createNotificationChannel(notificationChannel) ;
+        }
+        assert mNotificationManager != null;
+        mNotificationManager.notify(( int ) System. currentTimeMillis () ,
+                mBuilder.build()) ;
+    }
+}
+
+
+18)Create an android application that uses GUI components, Font and Colors.
+
+#MainActivity.java:
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText inputText;
+    private Button submitButton;
+    private TextView displayText;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        inputText = findViewById(R.id.input_text);
+        submitButton = findViewById(R.id.submit_button);
+        displayText = findViewById(R.id.display_text);
+
+        // Set font for the display text
+        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/custom_font.ttf");
+        displayText.setTypeface(customFont);
+
+        // Set color for the submit button
+        submitButton.setBackgroundColor(Color.parseColor("#ff6600"));
+
+        // Add a click listener to the submit button
+        submitButton.setOnClickListener(view -> {
+            String input = inputText.getText().toString().trim();
+            displayText.setText(input);
+        });
+    }
+}
+
+#activity_main.xml: (IF NECESSARY)
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/input_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter text here"
+        android:textSize="20sp"
+        android:padding="8dp"
+        android:background="@drawable/edit_text_bg"/>
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textSize="20sp"
+        android:textColor="#fff"
+        android:padding="12dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/display_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="#333"
+        android:padding="16dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>
+
+
+Newer:
+
+#activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:gravity="center"
+        android:text="Hello World!"
+        android:fontFamily="cursive"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="Change font size"
+        android:textSize="25sp" />
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="Change color"
+        android:textSize="25sp" />
+</LinearLayout>
+
+
+#MainActivity.java
+
+package com.example.myapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity
+{
+    int ch=1;
+    float font=30;
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        final TextView t= (TextView) findViewById(R.id.textView);
+        Button b1= (Button) findViewById(R.id.button1);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t.setTextSize(font);
+                font = font + 5;
+                if (font == 50)
+                    font = 30;
+            }
+        });
+        Button b2= (Button) findViewById(R.id.button2);
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (ch) {
+                    case 1:
+                        t.setTextColor(Color.RED);
+                        break;
+                    case 2:
+                        t.setTextColor(Color.GREEN);
+                        break;
+                    case 3:
+                        t.setTextColor(Color.BLUE);
+                        break;
+                    case 4:
+                        t.setTextColor(Color.CYAN);
+                        break;
+                    case 5:
+                        t.setTextColor(Color.YELLOW);
+                        break;
+                    case 6:
+                        t.setTextColor(Color.MAGENTA);
+                        break;
+                }
+                ch++;
+                if (ch == 7)
+                    ch = 1;
+            }
+        });
+    }
+}
+
+
+
+
+19)Create an android application that implements Multi threading
+
+
+#MainActivity.java:
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    private TextView textView;
+    private Button button;
+    private Handler handler;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        textView = findViewById(R.id.text_view);
+        button = findViewById(R.id.button);
+
+        handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                // Update UI with the message received from the background thread
+                textView.setText(msg.obj.toString());
+            }
+        };
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create a new background thread
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Perform some long-running task in the background thread
+                        String result = performLongRunningTask();
+
+                        // Send a message to the main thread with the result
+                        Message message = handler.obtainMessage(1, result);
+                        handler.sendMessage(message);
+                    }
+                }).start();
+            }
+        });
+    }
+
+    private String performLongRunningTask() {
+        // Simulate a long-running task by sleeping for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "Task completed!";
+    }
+}
+
+#activity_main.xml: (IF NECESSARY)
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Press the button to start the task"
+        android:textSize="20sp"
+        android:textColor="#333"
+        android:padding="16dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Task"
+        android:textSize="20sp"
+        android:textColor="#fff"
+        android:padding="12dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>
