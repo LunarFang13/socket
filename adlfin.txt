@@ -1,3 +1,128 @@
+1)Design the static web pages required for an online shopping cart.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Online Shopping Cart</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #E3F0FF, #FAFCFF);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .CartContainer {
+      width: 70%;
+      height: 90%;
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0px 10px 20px #1687d933;
+    }
+    
+    .Header {
+      margin: auto;
+      width: 90%;
+      height: 15%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      background-color: #f1f1f1;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+    
+    .Logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #1687d9;
+    }
+    
+    .CartCount {
+      font-size: 1.2rem;
+      color: #1687d9;
+      background-color: #fff;
+      padding: 5px 10px;
+      border-radius: 10px;
+    }
+    
+    .CartItems {
+      padding: 20px;
+    }
+    
+    .CartItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+    }
+    
+    .CartItem img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+    
+    .CartItemTitle {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .CartItemPrice {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #1687d9;
+    }
+    
+    .CheckoutButton {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #1687d9;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    
+    .CheckoutButton:hover {
+      background-color: #0c5ca5;
+    }
+  </style>
+</head>
+<body>
+  <div class="CartContainer">
+    <div class="Header">
+      <div class="Logo">Online Shop</div>
+      <div class="CartCount">2 items</div>
+    </div>
+    <div class="CartItems">
+      <div class="CartItem">
+        <img src="https://via.placeholder.com/100" alt="Product Image">
+        <div>
+          <div class="CartItemTitle">Product Title</div>
+          <div class="CartItemPrice">Rs19.99</div>
+        </div>
+      </div>
+      <div class="CartItem">
+        <img src="https://via.placeholder.com/100" alt="Product Image">
+        <div>
+          <div class="CartItemTitle">Product Title</div>
+          <div class="CartItemPrice">Rs24.99</div>
+ 	 </div>
+     </div>
+   </body>
+</head>
+</html>
+
 2)Write JavaScript to validate the following fields of the Registration page First Name (Name should contains alphabets and the length should not be less than 6 characters).  Password (Password should not be less than 6 characters length).  E-mail id (should not contain any invalid and must follow the standard pattern name@domain.com)  Mobile Number (Phone number should contain 10 digits only).  Last Name and Address (should not be Empty)
 
 <!DOCTYPE html>
